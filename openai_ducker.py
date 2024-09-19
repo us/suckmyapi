@@ -268,7 +268,7 @@ class OpenAIEndpoint(ABC):
     @staticmethod
     def generate_random_text(length):
         """Generate random text of a given length."""
-        return ''.join(random.choices(
+        return ' '.join(random.choices(
             string.ascii_letters + string.digits + string.punctuation + ' ',
             k=length
         ))
