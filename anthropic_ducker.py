@@ -29,8 +29,8 @@ MODEL_RATE_LIMITS = {
         'max_tokens': 8192,
         'tier': 1,
         'pricing': {
-            'input_per_1000': 0.011,
-            'output_per_1000': 0.032
+            'input_per_1000': 0.015,  # $15 per million tokens
+            'output_per_1000': 0.075  # $75 per million tokens
         }
     },
     'claude-3-5-sonnet': {
@@ -42,8 +42,8 @@ MODEL_RATE_LIMITS = {
         'max_tokens': 4096,
         'tier': 2,
         'pricing': {
-            'input_per_1000': 3.00,
-            'output_per_1000': 15.00
+            'input_per_1000': 0.003,  # $3 per million tokens
+            'output_per_1000': 0.015  # $15 per million tokens
         }
     },
     'claude-3-sonnet': {
@@ -55,8 +55,8 @@ MODEL_RATE_LIMITS = {
         'max_tokens': 4096,
         'tier': 2,
         'pricing': {
-            'input_per_1000': 3.00,
-            'output_per_1000': 15.00
+            'input_per_1000': 0.003,  # $3 per million tokens
+            'output_per_1000': 0.015  # $15 per million tokens
         }
     },
     'claude-3-haiku': {
@@ -68,8 +68,8 @@ MODEL_RATE_LIMITS = {
         'max_tokens': 4096,
         'tier': 2,
         'pricing': {
-            'input_per_1000': 0.25,
-            'output_per_1000': 1.25
+            'input_per_1000': 0.00025,  # $0.25 per million tokens
+            'output_per_1000': 0.00125  # $1.25 per million tokens
         }
     },
 }
@@ -84,7 +84,7 @@ class AnthropicEndpoint(ABC):
     @staticmethod
     def generate_random_text(length):
         """Generate random text of a given length."""
-        return ''.join(random.choices(
+        return ' '.join(random.choices(
             string.ascii_letters + string.digits + string.punctuation + ' ',
             k=length
         ))
@@ -104,7 +104,7 @@ class ChatCompletionsEndpoint(AnthropicEndpoint):
 
     async def send_request(self):
         max_tokens = self.model_info['max_tokens']
-        prompt = self.construct_max_input(max_tokens // 2)
+        prompt = self.construct_max_input(max_tokens)  # Use full max_tokens
         input_tokens = len(prompt.split())  # Rough input token estimation
         output_tokens = 0
         logging.debug(f"Sending request with prompt length: {input_tokens} tokens")
@@ -167,7 +167,7 @@ async def main():
         # Calculate the number of requests per model based on RPM
         total_rpm = sum(model['rpm'] for model in MODEL_RATE_LIMITS.values() if model['rpm'])
         model_request_counts = {
-            model_name: max(1, int((model_info['rpm'] / total_rpm) * model_info['rpm']))
+            model_name: max(1, int(model_info['rpm']))
             for model_name, model_info in MODEL_RATE_LIMITS.items()
         }
 
@@ -193,4 +193,4 @@ async def main():
         logging.info(f"Total failures in this batch: {total_failures}")
 
         # Wait for the next rate limit window
-        await asyncio.sleep(60)
+        await asyncio.sleep(5)
