@@ -1,0 +1,23 @@
+.venv/
+.cursorignore
+
+# add default python project to ignore for github
+
+*__pycache__*
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyj
+*.pyjz
+# additional files and directories to ignore
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+.idea/
+.vscode/
+node_modules/
