@@ -29,28 +29,21 @@ We’re always open to adding more APIs! Got a favorite API that needs testing? 
 ---
 
 
+## 🎢 Features to Max Out APIs (And Your Budget)
 
-## 🎢 Features to Break the Bank (And API Limits)
-
-Here’s where the real fun begins. **SuckMyAPI** takes the concept of API usage and cranks it up to 11. This isn't just about making a few requests here and there—no, we’re talking about **pushing every single API endpoint to the max** and **sending requests asynchronously** at breakneck speed. Here’s how we make it happen:
+**SuckMyAPI** cranks API usage to the limit by pushing every endpoint and firing async requests at full speed.
 
 ### 1. **Token Tsunami**
-Ever wonder what happens when you flood an API with tokens non-stop? With **SuckMyAPI**, you’ll find out! We leverage each API’s token handling capacity to the extreme. For example, if **OpenAI’s GPT-4** has a max token limit per request, we hit it—again and again, until the API cries uncle. The same goes for **Anthropic’s Claude**. Our token tsunami overloads each model with input and output tokens, making sure every endpoint gets a workout.
+Flood APIs like **OpenAI’s GPT-4** and **Anthropic’s Claude** with maximum tokens until they can’t handle more.
 
 ### 2. **Limit Limbo**
-API rate limits? Pfft. Let’s see how far those limits can bend. Every API comes with a set number of requests allowed per minute, hour, or day. Whether it’s **OpenAI**, **Anthropic**, or any other API you implement, SuckMyAPI fires requests asynchronously, maxing out those limits across all endpoints. The best part? All requests are sent simultaneously, meaning we’re hitting those rate limits like a ton of bricks—**async-style**, no holding back.
-
-- **OpenAI’s GPT-4**: Test the per-minute request limit across multiple endpoints—**completions**, **edits**, and **embeddings**—all at once.
-- **Anthropic’s Claude**: Push through the token limit while also testing rate limits across Claude’s various tasks.
+Max out API rate limits by sending simultaneous async requests across all endpoints—completions, edits, embeddings, and more.
 
 ### 3. **Bill Buster 3000**
-This is where it gets painful (and hilarious). Every API has a billing model based on usage—whether it’s tokens, requests, or time. Our **Bill Buster 3000** feature pushes these models to the edge, showing you exactly how much it’ll cost to run full-throttle requests. Want to see your API budget go up in flames? SuckMyAPI makes it happen. The algorithm doesn’t just maximize tokens or requests—it calculates the cost of each batch in real-time, so you can watch the numbers rack up as you push the limits.
+Push API billing models to the edge, watching costs rack up in real-time with each token and request.
 
 ### 4. **Endpoint Explorer**
-We don’t just test a single endpoint—we test **ALL of them**. With **SuckMyAPI**, every available API endpoint gets the same maxed-out treatment, ensuring that you’re stress-testing your entire API integration, not just a single task. From completions and edits in **OpenAI**, to summarization or dialogue generation in **Claude**, every API call is pushed to the breaking point, in parallel, at maximum capacity.
-
----
-
+Test **every** available endpoint at full capacity, ensuring a complete API stress test across all functions.
 **How It Works:**
 
 - **Async Requests**: SuckMyAPI uses asynchronous programming to make API requests. This means we can send a barrage of calls to every endpoint—**simultaneously**—maxing out API limits faster than you can blink.
